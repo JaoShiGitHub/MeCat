@@ -61,4 +61,14 @@ const login = async () => {
     .json({ success: true, message: "Logged in successfully." });
 };
 
-export { register, login };
+// LOGOUT
+const logout = (req, res) => {
+  res.clearCookie("token", {
+    httpOnly: true,
+    secure: true,
+    sameSite: "Strict",
+  });
+  res.status(200).json({ success: true, message: "Logged out successfully" });
+};
+
+export { register, login, logout };
