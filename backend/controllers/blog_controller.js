@@ -51,4 +51,20 @@ const editBlog = async (req, res) => {
     .json({ success: true, message: "Blog updated successfully" });
 };
 
-export { getBlogs, getMyBlogs, createBlog, editBlog };
+const deleteBlog = async (req, res) => {
+  const { blog_id } = req.params;
+
+  const result = await pool.query(`DELETE FROM blogs WHERE blog_id = $1`, [
+    blog_id,
+  ]);
+
+  if (result.rowCount === 0) {
+    return res.status(404).json({ success: false, message: "Blog not found" });
+  }
+
+  return res
+    .status(200)
+    .json({ success: true, message: "Blog deleted successfully" });
+};
+
+export { getBlogs, getMyBlogs, createBlog, editBlog, deleteBlog };
