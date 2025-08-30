@@ -71,4 +71,18 @@ const logout = (req, res) => {
   res.status(200).json({ success: true, message: "Logged out successfully" });
 };
 
-export { register, login, logout };
+// CHECK LOGIN USER
+
+const isLoggedIn = (req, res) => {
+  if (!req.user) {
+    return res
+      .status(401)
+      .json({ success: false, message: "User is not logged in" });
+  }
+
+  return res
+    .status(200)
+    .json({ success: true, message: "User is logged in", user: req.user });
+};
+
+export { register, login, logout, isLoggedIn };

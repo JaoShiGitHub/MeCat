@@ -7,7 +7,12 @@ import {
 } from "../middlewares/validations.js";
 import authUser from "../middlewares/auth.js";
 // CONTROLLERS
-import { login, logout, register } from "../controllers/auth_controller.js";
+import {
+  register,
+  login,
+  logout,
+  isLoggedIn,
+} from "../controllers/auth_controller.js";
 
 const authRouter = Router();
 
@@ -18,6 +23,6 @@ authRouter.post(
 );
 authRouter.post("/login", [validateLoginInput], login);
 authRouter.post("/logout", logout);
-authRouter.post("/status", authUser);
+authRouter.post("/status", authUser, isLoggedIn);
 
 export default authRouter;
