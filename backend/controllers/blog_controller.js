@@ -37,4 +37,18 @@ const createBlog = async (req, res) => {
   return res.status(201).json({ success: true, message: "Blog created" });
 };
 
-export { getBlogs, getMyBlogs, createBlog };
+const editBlog = async (req, res) => {
+  const { blog_id } = req.params;
+  const { title, content } = req.body;
+
+  await pool.query(
+    `UPDATE blogs SET title = $1, content = $2, updated_at = NOW() WHERE blog_id = $3`,
+    [title, content, blog_id]
+  );
+
+  return res
+    .status(200)
+    .json({ success: true, message: "Blog updated successfully" });
+};
+
+export { getBlogs, getMyBlogs, createBlog, editBlog };
