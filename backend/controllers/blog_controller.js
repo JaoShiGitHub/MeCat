@@ -25,4 +25,16 @@ const getMyBlogs = async (req, res) => {
   return res.status(200).json({ success: true, myBlogs });
 };
 
-export { getBlogs, getMyBlogs };
+const createBlog = async (req, res) => {
+  const { id } = req.user;
+  const { title, content } = req.body;
+
+  await pool.query(
+    `INSERT INTO blogs (user_id, title, content, posted_at, updated_at) VALUES ($1, $2, $3, NOW(), NOW())`,
+    [id, title, content]
+  );
+
+  return res.status(201).json({ success: true, message: "Blog created" });
+};
+
+export { getBlogs, getMyBlogs, createBlog };
