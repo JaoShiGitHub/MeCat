@@ -3,8 +3,8 @@ import dotenv from "dotenv";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 // Routers
-import authRouter from "./routers/auth_routes";
-import blogRouter from "./routers/blog_routes";
+import authRouter from "./routers/auth_routes.js";
+import blogRouter from "./routers/blog_routes.js";
 
 const app = express();
 const port = 5000;

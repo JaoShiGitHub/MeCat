@@ -1,12 +1,12 @@
 import { Router } from "express";
-import authUser from "../middlewares/auth";
+import authUser from "../middlewares/auth.js";
 import {
   getBlogs,
   getMyBlogs,
   createBlog,
   editBlog,
   deleteBlog,
-} from "../controllers/blog_controller";
+} from "../controllers/blog_controller.js";
 
 const blogRouter = Router();
 
