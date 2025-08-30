@@ -1,3 +1,4 @@
+import { pool } from "../utils/db.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 
@@ -19,7 +20,7 @@ const register = async (req, res) => {
 };
 
 // LOGIN
-const login = async () => {
+const login = async (req, res) => {
   const { email, password } = req.body;
 
   const data = await pool.query(`SELECT * FROM users WHERE email = $1`, [

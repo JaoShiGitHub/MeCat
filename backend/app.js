@@ -7,10 +7,11 @@ import authRouter from "./routers/auth_routes.js";
 import blogRouter from "./routers/blog_routes.js";
 
 const app = express();
-const port = 5000;
+const port = 4000;
 
 dotenv.config();
 
+app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
@@ -19,8 +20,8 @@ app.use(
   })
 );
 
-app.use("auth", authRouter);
-app.use("blogs", blogRouter);
+app.use("/auth", authRouter);
+app.use("/blogs", blogRouter);
 
 app.listen(port, () => {
   console.log(`Sever is running on port ${port}`);
