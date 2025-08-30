@@ -16,7 +16,7 @@ const register = async (req, res) => {
 
   return res
     .status(201)
-    .json({ success: true, message: "New user has been created" });
+    .json({ success: true, message: "Account has been created" });
 };
 
 // LOGIN
@@ -81,9 +81,11 @@ const isLoggedIn = (req, res) => {
       .json({ success: false, message: "User is not logged in" });
   }
 
+  const user = req.user;
+
   return res
     .status(200)
-    .json({ success: true, message: "User is logged in", user: req.user });
+    .json({ success: true, message: "User is logged in", user });
 };
 
 export { register, login, logout, isLoggedIn };

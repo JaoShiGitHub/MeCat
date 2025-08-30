@@ -23,6 +23,6 @@ authRouter.post(
 );
 authRouter.post("/login", [validateLoginInput], login);
 authRouter.post("/logout", logout);
-authRouter.post("/status", authUser, isLoggedIn);
+authRouter.get("/status", authUser, isLoggedIn);
 
 export default authRouter;
