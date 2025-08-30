@@ -4,6 +4,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        black01: "#010617",
         whiteFA: "#FAFAFA",
         whiteF5: "#F5F5F5",
         placeholder: "#989898",
