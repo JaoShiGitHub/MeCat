@@ -1,5 +1,7 @@
+import Layout from "../components/Layout";
+
 function AllBlogsPage() {
-  return <section>AllBlogsPage</section>;
+  return <Layout>AllBlogsPage</Layout>;
 }
 
 export default AllBlogsPage;

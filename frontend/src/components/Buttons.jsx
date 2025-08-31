@@ -1,3 +1,8 @@
+import { NavLink } from "react-router-dom";
+
+const navLinkStyle =
+  " hover:border-2 hover:border-black hover:text-black flex items-center justify-center rounded-md h-10";
+
 export function LongButton({ btnName, type = "button" }) {
   return (
     <button
@@ -6,5 +11,18 @@ export function LongButton({ btnName, type = "button" }) {
     >
       {btnName}
     </button>
+  );
+}
+
+export function CustomNavLink({ to, page }) {
+  return (
+    <NavLink
+      to={to}
+      className={({ isActive }) =>
+        isActive ? `font-bold text-black ${navLinkStyle}` : `${navLinkStyle}`
+      }
+    >
+      <span>{page}</span>
+    </NavLink>
   );
 }

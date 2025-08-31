@@ -5,8 +5,7 @@ import UnAuthenticatedApp from "./pages/UnAuthenticatedApp";
 function App() {
   const { isAuthenticated } = useAuth();
   return (
-    // <div>{isAuthenticated ? <AuthenticatedApp /> : <UnAuthenticatedApp />}</div>
-    <div>{<UnAuthenticatedApp />}</div>
+    <div>{isAuthenticated ? <AuthenticatedApp /> : <UnAuthenticatedApp />}</div>
   );
 }
 

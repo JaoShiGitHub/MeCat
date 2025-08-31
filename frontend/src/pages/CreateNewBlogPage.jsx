@@ -1,5 +1,7 @@
+import Layout from "../components/Layout";
+
 function CreateNewBlogPage() {
-  return <section>CreateNewBlogPage</section>;
+  return <Layout>CreateNewBlogPage</Layout>;
 }
 
 export default CreateNewBlogPage;
