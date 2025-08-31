@@ -4,10 +4,12 @@ import Layout from "../components/Layout";
 import BASE_URL from "../config";
 import axios from "axios";
 import { useAuth } from "../contexts/Auth";
+import { useEditForm } from "../contexts/EditForm";
 
 function AllBlogsPage() {
   const [blogs, setBlogs] = useState([]);
   const { errorMessage, setErrorMessage } = useAuth();
+  const { searchResult } = useEditForm();
 
   useEffect(() => {
     getBlogs();

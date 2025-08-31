@@ -3,9 +3,11 @@ import BlogList from "../components/BlogList";
 import Layout from "../components/Layout";
 import axios from "axios";
 import BASE_URL from "../config";
+import { useEditForm } from "../contexts/EditForm";
 
 function MyBlogsPage() {
   const [myBlogs, setMyBlogs] = useState([]);
+  const { searchResult } = useEditForm();
 
   useEffect(() => {
     getMyBlogs();

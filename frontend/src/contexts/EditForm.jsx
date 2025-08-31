@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 const EditFormContext = React.createContext();
 
@@ -6,6 +6,7 @@ function EditFormProvider(props) {
   const [editBlog, setEditBlog] = useState();
   const [search, setSearch] = useState("");
   const [searchResult, setSearchResult] = useState([]);
+  const [searchError, setSearchError] = useState("");
 
   return (
     <EditFormContext.Provider
@@ -16,6 +17,8 @@ function EditFormProvider(props) {
         setSearch,
         searchResult,
         setSearchResult,
+        searchError,
+        setSearchError,
       }}
     >
       {props.children}
