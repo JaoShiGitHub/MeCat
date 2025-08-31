@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Layout from "../components/Layout";
@@ -9,8 +9,8 @@ import { useEditForm } from "../contexts/EditForm";
 
 function ViewBlogPage() {
   const [blog, setBlog] = useState({});
+  const navigate = useNavigate();
   const { editBlog } = useEditForm();
-
   const { blogId } = useParams();
 
   useEffect(() => {
@@ -37,11 +37,25 @@ function ViewBlogPage() {
 
   return (
     <Layout>
-      {editBlog ? (
-        <EditBlog originalTitle={blog?.title} originalContent={blog?.content} />
-      ) : (
-        <BlogContent blog={blog} />
-      )}
+      <section className="w-full flex justify-center">
+        <div className="max-w-[70vw] w-full flex flex-col items-center">
+          <button
+            className="text-start self-start flex items-center gap-x-4 hover:font-bold"
+            onClick={() => navigate(-1)}
+          >
+            <img className="h-[45%]" src="/images/black-arrow-left.svg" />
+            <span>Back</span>
+          </button>
+          {editBlog ? (
+            <EditBlog
+              originalTitle={blog?.title}
+              originalContent={blog?.content}
+            />
+          ) : (
+            <BlogContent blog={blog} />
+          )}
+        </div>
+      </section>
     </Layout>
   );
 }

@@ -4,7 +4,13 @@ import BASE_URL from "../config";
 
 // This BlogForm is used for editing and creating blogs
 
-function BlogForm({ type, blogId, originalTitle, originalContent }) {
+function BlogForm({
+  type,
+  blogId,
+  originalTitle,
+  originalContent,
+  handleCancelBtn,
+}) {
   const [title, setTitle] = useState(originalTitle || "");
   const [content, setContent] = useState(originalContent || "");
   const [successMessage, setSuccessMessage] = useState("");
@@ -87,7 +93,10 @@ function BlogForm({ type, blogId, originalTitle, originalContent }) {
       />
       {title || content ? (
         <div className="w-full mt-10 flex gap-x-4">
-          <button className="w-[10vw] h-[4vh] rounded-md font-semibold  hover:text-black hover:border hover:border-black">
+          <button
+            className="w-[10vw] h-[4vh] rounded-md font-semibold  hover:text-black hover:border hover:border-black"
+            onClick={handleCancelBtn}
+          >
             Cancel
           </button>
           <button
