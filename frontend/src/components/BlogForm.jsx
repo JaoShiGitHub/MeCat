@@ -9,6 +9,11 @@ function BlogForm({ type, blogId, originalTitle, originalContent }) {
   const [content, setContent] = useState(originalContent || "");
   const [successMessage, setSuccessMessage] = useState("");
 
+  useEffect(() => {
+    setTitle(originalTitle || "");
+    setContent(originalContent || "");
+  }, [originalTitle, originalContent]);
+
   const handleSubmitEditForm = async (e) => {
     e.preventDefault();
     try {

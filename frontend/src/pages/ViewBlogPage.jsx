@@ -4,9 +4,13 @@ import axios from "axios";
 import Layout from "../components/Layout";
 import BlogContent from "../components/BlogContent";
 import BASE_URL from "../config";
+import EditBlog from "../components/EditBlog";
+import { useEditForm } from "../contexts/EditForm";
 
 function ViewBlogPage() {
   const [blog, setBlog] = useState({});
+  const { editBlog } = useEditForm();
+
   const { blogId } = useParams();
 
   useEffect(() => {
@@ -29,9 +33,15 @@ function ViewBlogPage() {
     }
   };
 
+  console.log(blog);
+
   return (
     <Layout>
-      <BlogContent blog={blog} />
+      {editBlog ? (
+        <EditBlog originalTitle={blog?.title} originalContent={blog?.content} />
+      ) : (
+        <BlogContent blog={blog} />
+      )}
     </Layout>
   );
 }

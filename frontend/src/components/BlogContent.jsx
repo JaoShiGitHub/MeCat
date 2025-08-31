@@ -1,10 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/Auth";
+import { useEditForm } from "../contexts/EditForm";
 
 function BlogContent({ blog = {} }) {
   const navigate = useNavigate();
+  const { setEditBlog } = useEditForm();
   const { loggedInUser } = useAuth();
-  console.log(loggedInUser?.id);
 
   return (
     <section className="w-full flex justify-center">
@@ -26,7 +27,11 @@ function BlogContent({ blog = {} }) {
                 <button className="hover:font-semibold hover:underline hover:text-red-700">
                   Delete
                 </button>
-                <button className="hover:font-semibold hover:underline">
+
+                <button
+                  className="hover:font-semibold hover:underline"
+                  onClick={() => setEditBlog(true)}
+                >
                   Edit
                 </button>
               </div>
