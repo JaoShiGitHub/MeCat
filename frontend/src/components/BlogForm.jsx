@@ -65,6 +65,11 @@ function BlogForm({
     }
   }, [successMessage]);
 
+  const onClickCancel = () => {
+    setTitle("");
+    setContent("");
+  };
+
   return (
     <form
       className="flex flex-col w-full"
@@ -95,7 +100,7 @@ function BlogForm({
         <div className="w-full mt-10 flex gap-x-4">
           <button
             className="w-[10vw] h-[4vh] rounded-md font-semibold  hover:text-black hover:border hover:border-black"
-            onClick={handleCancelBtn}
+            onClick={handleCancelBtn || onClickCancel}
           >
             Cancel
           </button>

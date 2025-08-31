@@ -12,7 +12,6 @@ function AuthenticatedApp() {
         <Route path="/blogs" element={<AllBlogsPage />} />
         <Route path="/my-blogs" element={<MyBlogsPage />} />
         <Route path="/create" element={<CreateNewBlogPage />} />
-        {/* TODO: Create paths & elements */}
         <Route path="/blogs/:blogId/:blogSlug" element={<ViewBlogPage />} />
         <Route path="/my-blogs/:blogId/:blogSlug" element={<ViewBlogPage />} />
 
