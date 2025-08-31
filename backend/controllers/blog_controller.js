@@ -21,7 +21,16 @@ const getBlog = async (req, res) => {
 };
 
 const getBlogs = async (req, res) => {
-  const data = await pool.query("SELECT * FROM blogs");
+  const { search } = req.query;
+  let query = "SELECT * FROM blogs";
+  let params = [];
+
+  if (search) {
+    query += " WHERE title ILIKE $1 OR content ILIKE $1";
+    params.push(`%${search}%`);
+  }
+
+  const data = await pool.query(query, params);
 
   if (data.rows.length === 0) {
     return res.status(404).json({ success: false, message: "Blogs not found" });
