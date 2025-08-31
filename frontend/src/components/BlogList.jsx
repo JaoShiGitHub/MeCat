@@ -14,8 +14,11 @@ function BlogList({ listName, blogs = [] }) {
       <ul className="flex flex-col gap-y-8 overflow-y-auto pb-10">
         {blogs.map((blog) => {
           return (
-            <li className="bg-white border-2 border-gray-300 rounded-xl px-10 py-6 max-h-[20vh]">
-              <button className="text-start ">
+            <li
+              key={blog.blog_id}
+              className="bg-white border-2 border-gray-300 rounded-xl px-10 py-6 h-[20vh]"
+            >
+              <button className="text-start">
                 <h1 className="font-bold text-xl mb-4">{blog.title}</h1>
                 <p className="text-base line-clamp-4">{blog.content}</p>
               </button>

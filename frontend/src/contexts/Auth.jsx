@@ -65,6 +65,7 @@ function AuthProvider(props) {
         isLoggedIn,
         logout,
         errorMessage,
+        setErrorMessage,
       }}
     >
       {props.children}
