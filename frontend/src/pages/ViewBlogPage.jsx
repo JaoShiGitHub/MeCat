@@ -33,8 +33,6 @@ function ViewBlogPage() {
     }
   };
 
-  console.log(blog);
-
   return (
     <Layout>
       <section className="w-full flex justify-center">

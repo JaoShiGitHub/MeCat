@@ -3,11 +3,13 @@ import BlogList from "../components/BlogList";
 import Layout from "../components/Layout";
 import axios from "axios";
 import BASE_URL from "../config";
-import { useEditForm } from "../contexts/EditForm";
+import SearchBar from "../components/SearchBar";
 
 function MyBlogsPage() {
   const [myBlogs, setMyBlogs] = useState([]);
-  const { searchResult } = useEditForm();
+  const [search, setSearch] = useState("");
+  const [searchResult, setSearchResult] = useState([]);
+  const [searchError, setSearchError] = useState("");
 
   useEffect(() => {
     getMyBlogs();
@@ -18,7 +20,7 @@ function MyBlogsPage() {
       const response = await axios.get(`${BASE_URL}/blogs/me`, {
         withCredentials: true,
       });
-      setMyBlogs(response.data.myBlogs);
+      setMyBlogs(response?.data?.myBlogs);
     } catch (error) {
       if (axios.isAxiosError(error)) {
         console.log(error?.response?.data?.message);
@@ -29,9 +31,50 @@ function MyBlogsPage() {
     }
   };
 
+  const getMyBlogsBySearch = async () => {
+    try {
+      setSearchError("");
+      const response = await axios.get(
+        `${BASE_URL}/blogs/me?search=${search.trim()}`,
+        {
+          withCredentials: true,
+        }
+      );
+      setSearchResult(response?.data?.myBlogs);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        setSearchError(error.response?.data?.message);
+        console.log(error.message);
+      } else {
+        console.log(error);
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (search.trim()) {
+      getMyBlogsBySearch();
+    } else {
+      setSearchResult([]);
+      setSearchError("");
+    }
+  }, [search]);
+
   return (
     <Layout>
-      <BlogList pathName="my-blogs" listName="My blogs" blogs={myBlogs} />
+      <div className="flex flex-col gap-y-10 max-w-[60vw]">
+        <SearchBar
+          search={search}
+          setSearch={setSearch}
+          func={getMyBlogsBySearch}
+        />
+        <BlogList
+          pathName="my-blogs"
+          listName="My blogs"
+          searchError={searchError}
+          blogs={searchResult?.length > 0 && search ? searchResult : myBlogs}
+        />
+      </div>
     </Layout>
   );
 }

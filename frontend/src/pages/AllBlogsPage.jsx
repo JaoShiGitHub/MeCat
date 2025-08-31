@@ -3,13 +3,13 @@ import BlogList from "../components/BlogList";
 import Layout from "../components/Layout";
 import BASE_URL from "../config";
 import axios from "axios";
-import { useAuth } from "../contexts/Auth";
-import { useEditForm } from "../contexts/EditForm";
+import SearchBar from "../components/SearchBar";
 
 function AllBlogsPage() {
+  const [search, setSearch] = useState("");
   const [blogs, setBlogs] = useState([]);
-  const { errorMessage, setErrorMessage } = useAuth();
-  const { searchResult } = useEditForm();
+  const [searchResult, setSearchResult] = useState([]);
+  const [searchError, setSearchError] = useState("");
 
   useEffect(() => {
     getBlogs();
@@ -31,9 +31,50 @@ function AllBlogsPage() {
     }
   };
 
+  const getBlogsBySearch = async () => {
+    try {
+      setSearchError("");
+      const response = await axios.get(
+        `${BASE_URL}/blogs?search=${search.trim()}`,
+        {
+          withCredentials: true,
+        }
+      );
+      setSearchResult(response?.data?.blogs);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        setSearchError(error.response?.data?.message);
+        console.log(error.message);
+      } else {
+        console.log(error);
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (search.trim()) {
+      getBlogsBySearch();
+    } else {
+      setSearchResult([]);
+      setSearchError("");
+    }
+  }, [search]);
+
   return (
     <Layout>
-      <BlogList pathName="blogs" listName="All blogs" blogs={blogs} />
+      <div className="w-full flex flex-col gap-y-10 max-w-[60vw]">
+        <SearchBar
+          search={search}
+          setSearch={setSearch}
+          func={getBlogsBySearch}
+        />
+        <BlogList
+          pathName="blogs"
+          listName="All blogs"
+          searchError={searchError}
+          blogs={searchResult?.length > 0 && search ? searchResult : blogs}
+        />
+      </div>
     </Layout>
   );
 }

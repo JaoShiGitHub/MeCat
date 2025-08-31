@@ -43,7 +43,17 @@ const getBlogs = async (req, res) => {
 
 const getMyBlogs = async (req, res) => {
   const { id } = req.user;
-  const data = await pool.query("SELECT * FROM blogs WHERE user_id = $1", [id]);
+  const { search } = req.query;
+
+  let query = "SELECT * FROM blogs WHERE user_id = $1";
+  let params = [id];
+
+  if (search) {
+    query += " AND (title ILIKE $2 OR content ILIKE $2)";
+    params.push(`%${search}%`);
+  }
+
+  const data = await pool.query(query, params);
 
   if (data.rows.length === 0) {
     return res.status(404).json({ success: false, message: "Blogs not found" });

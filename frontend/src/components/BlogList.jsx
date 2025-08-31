@@ -1,16 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
-import SearchBar from "./SearchBar";
-import { useEditForm } from "../contexts/EditForm";
 
-function BlogList({ pathName, listName, blogs = [] }) {
+function BlogList({ searchError, pathName, listName, blogs = [] }) {
   const navigate = useNavigate();
 
-  const { searchError, searchResult } = useEditForm();
-  const displayBlogs = searchResult.length > 0 ? searchResult : blogs;
-
   return (
-    <section className="flex flex-col items-center w-full gap-y-10 max-w-[60vw]">
-      <SearchBar />
+    <section className="flex flex-col items-center w-full h-[90%] gap-y-10">
       <div className="w-full flex justify-between px-2">
         <h1 className="font-bold text-[clamp(1.5rem,2vh,3rem)]">{listName}</h1>
         <button
@@ -24,7 +18,7 @@ function BlogList({ pathName, listName, blogs = [] }) {
         <p>Blogs not found</p>
       ) : (
         <ul className="flex flex-col gap-y-8 overflow-y-auto pb-10 ">
-          {displayBlogs.map((blog) => {
+          {blogs.map((blog) => {
             const blogSlug = blog.title.toLowerCase().split(" ").join("-");
 
             return (
