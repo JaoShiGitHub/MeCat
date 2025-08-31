@@ -7,7 +7,7 @@ module.exports = {
         black01: "#010617",
         whiteFA: "#FAFAFA",
         whiteF5: "#F5F5F5",
-        placeholder: "#989898",
+        grey98: "#989898",
         meCat: "#545454",
         babyCorn: "#FFEA79",
       },

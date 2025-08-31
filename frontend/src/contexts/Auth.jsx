@@ -5,8 +5,9 @@ import BASE_URL from "../config.js";
 const AuthContext = React.createContext();
 
 function AuthProvider(props) {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
     isLoggedIn();
@@ -45,9 +46,12 @@ function AuthProvider(props) {
       if (response?.data?.success) {
         setIsAuthenticated(false);
       }
-      console.log("Logged out");
     } catch (error) {
-      console.log(error);
+      if (axios.isAxiosError(error)) {
+        setErrorMessage(error.response?.data?.message);
+      } else {
+        console.log(error);
+      }
     }
   };
 
@@ -60,6 +64,7 @@ function AuthProvider(props) {
         login,
         isLoggedIn,
         logout,
+        errorMessage,
       }}
     >
       {props.children}

@@ -4,7 +4,7 @@ function Layout({ children }) {
   return (
     <section className="bg-whiteF5 h-screen flex">
       <SideBar />
-      <div>{children}</div>
+      <div className="w-full flex justify-center pt-8">{children}</div>
     </section>
   );
 }

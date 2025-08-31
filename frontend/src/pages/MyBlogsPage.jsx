@@ -1,9 +1,10 @@
+import BlogList from "../components/BlogList";
 import Layout from "../components/Layout";
 
 function MyBlogsPage() {
   return (
     <Layout>
-      <p>MyBlogsPage</p>
+      <BlogList listName="My blogs" />
     </Layout>
   );
 }
