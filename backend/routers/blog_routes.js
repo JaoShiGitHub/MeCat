@@ -1,6 +1,7 @@
 import { Router } from "express";
 import authUser from "../middlewares/auth.js";
 import {
+  getBlog,
   getBlogs,
   getMyBlogs,
   createBlog,
@@ -10,10 +11,11 @@ import {
 
 const blogRouter = Router();
 
+blogRouter.get("/:blogId", authUser, getBlog);
 blogRouter.get("/", authUser, getBlogs);
 blogRouter.get("/me", authUser, getMyBlogs);
 blogRouter.post("/", authUser, createBlog);
-blogRouter.put("/:blog_id", authUser, editBlog);
-blogRouter.delete("/:blog_id", authUser, deleteBlog);
+blogRouter.put("/:blogId", authUser, editBlog);
+blogRouter.delete("/:blogId", authUser, deleteBlog);
 
 export default blogRouter;

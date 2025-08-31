@@ -1,7 +1,23 @@
 import { pool } from "../utils/db.js";
 
+const getBlog = async (req, res) => {
+  const { blogId } = req.params;
+
+  const data = await pool.query("SELECT * FROM blogs WHERE blog_id = $1", [
+    blogId,
+  ]);
+
+  if (data.rows.length === 0) {
+    return res.status(404).json({ success: false, message: "Blog not found" });
+  }
+
+  const blog = data.rows;
+
+  return res.status(200).json({ success: true, blog });
+};
+
 const getBlogs = async (req, res) => {
-  const data = await pool.query(`SELECT * FROM blogs`);
+  const data = await pool.query("SELECT * FROM blogs");
 
   if (data.rows.length === 0) {
     return res.status(404).json({ success: false, message: "Blogs not found" });
@@ -14,7 +30,7 @@ const getBlogs = async (req, res) => {
 
 const getMyBlogs = async (req, res) => {
   const { id } = req.user;
-  const data = await pool.query(`SELECT * FROM blogs WHERE user_id = $1`, [id]);
+  const data = await pool.query("SELECT * FROM blogs WHERE user_id = $1", [id]);
 
   if (data.rows.length === 0) {
     return res.status(404).json({ success: false, message: "Blogs not found" });
@@ -30,7 +46,7 @@ const createBlog = async (req, res) => {
   const { title, content } = req.body;
 
   await pool.query(
-    `INSERT INTO blogs (user_id, title, content, posted_at, updated_at) VALUES ($1, $2, $3, NOW(), NOW())`,
+    "INSERT INTO blogs (user_id, title, content, posted_at, updated_at) VALUES ($1, $2, $3, NOW(), NOW())",
     [id, title, content]
   );
 
@@ -38,12 +54,12 @@ const createBlog = async (req, res) => {
 };
 
 const editBlog = async (req, res) => {
-  const { blog_id } = req.params;
+  const { blogId } = req.params;
   const { title, content } = req.body;
 
   await pool.query(
-    `UPDATE blogs SET title = $1, content = $2, updated_at = NOW() WHERE blog_id = $3`,
-    [title, content, blog_id]
+    "UPDATE blogs SET title = $1, content = $2, updated_at = NOW() WHERE blog_id = $3",
+    [title, content, blogId]
   );
 
   return res
@@ -52,10 +68,10 @@ const editBlog = async (req, res) => {
 };
 
 const deleteBlog = async (req, res) => {
-  const { blog_id } = req.params;
+  const { blogId } = req.params;
 
-  const result = await pool.query(`DELETE FROM blogs WHERE blog_id = $1`, [
-    blog_id,
+  const result = await pool.query("DELETE FROM blogs WHERE blog_id = $1", [
+    blogId,
   ]);
 
   if (result.rowCount === 0) {
@@ -67,4 +83,4 @@ const deleteBlog = async (req, res) => {
     .json({ success: true, message: "Blog deleted successfully" });
 };
 
-export { getBlogs, getMyBlogs, createBlog, editBlog, deleteBlog };
+export { getBlog, getBlogs, getMyBlogs, createBlog, editBlog, deleteBlog };

@@ -4,7 +4,7 @@ import BASE_URL from "../config";
 
 // This BlogForm is used for editing and creating blogs
 
-function BlogForm({ type, blog_id, originalTitle, originalContent }) {
+function BlogForm({ type, blogId, originalTitle, originalContent }) {
   const [title, setTitle] = useState(originalTitle || "");
   const [content, setContent] = useState(originalContent || "");
   const [successMessage, setSuccessMessage] = useState("");
@@ -13,7 +13,7 @@ function BlogForm({ type, blog_id, originalTitle, originalContent }) {
     e.preventDefault();
     try {
       const response = await axios.put(
-        `${BASE_URL}/blogs/${blog_id}`,
+        `${BASE_URL}/blogs/${blogId}`,
         { title, content },
         { withCredentials: true }
       );
