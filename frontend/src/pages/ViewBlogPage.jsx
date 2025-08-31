@@ -6,7 +6,7 @@ import BlogContent from "../components/BlogContent";
 import BASE_URL from "../config";
 
 function ViewBlogPage() {
-  const [blog, setBlog] = useState([]);
+  const [blog, setBlog] = useState({});
   const { blogId } = useParams();
 
   useEffect(() => {
@@ -18,7 +18,7 @@ function ViewBlogPage() {
       const response = await axios.get(`${BASE_URL}/blogs/${blogId}`, {
         withCredentials: true,
       });
-      console.log(response);
+      setBlog(response?.data?.blog);
     } catch (error) {
       if (axios.isAxiosError(error)) {
         console.log(error.response?.data?.message);
@@ -31,7 +31,7 @@ function ViewBlogPage() {
 
   return (
     <Layout>
-      <BlogContent />
+      <BlogContent blog={blog} />
     </Layout>
   );
 }

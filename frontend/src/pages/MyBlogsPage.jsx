@@ -29,7 +29,7 @@ function MyBlogsPage() {
 
   return (
     <Layout>
-      <BlogList listName="My blogs" blogs={myBlogs} />
+      <BlogList pathName="my-blogs" listName="My blogs" blogs={myBlogs} />
     </Layout>
   );
 }

@@ -11,10 +11,10 @@ import {
 
 const blogRouter = Router();
 
-blogRouter.get("/:blogId", authUser, getBlog);
 blogRouter.get("/", authUser, getBlogs);
 blogRouter.get("/me", authUser, getMyBlogs);
 blogRouter.post("/", authUser, createBlog);
+blogRouter.get("/:blogId", authUser, getBlog);
 blogRouter.put("/:blogId", authUser, editBlog);
 blogRouter.delete("/:blogId", authUser, deleteBlog);
 

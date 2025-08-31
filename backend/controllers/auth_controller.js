@@ -27,13 +27,13 @@ const login = async (req, res) => {
     email,
   ]);
 
-  const user = data.rows[0];
+  const userData = data.rows[0];
 
-  if (!user) {
+  if (!userData) {
     return res.status(404).json({ success: false, message: "User not found" });
   }
 
-  const isValidPassword = bcrypt.compare(password, user.password);
+  const isValidPassword = bcrypt.compare(password, userData.password);
 
   if (!isValidPassword) {
     return res
@@ -43,8 +43,8 @@ const login = async (req, res) => {
 
   const token = jwt.sign(
     {
-      id: user.user_id,
-      username: user.username,
+      id: userData.user_id,
+      username: userData.username,
     },
     process.env.SECRET_KEY,
     { expiresIn: "1d" }
@@ -57,9 +57,11 @@ const login = async (req, res) => {
     maxAge: 24 * 60 * 60 * 1000,
   });
 
+  const user = { id: userData.user_id, username: userData.username };
+
   return res
     .status(200)
-    .json({ success: true, message: "Logged in successfully." });
+    .json({ success: true, message: "Logged in successfully.", user });
 };
 
 // LOGOUT

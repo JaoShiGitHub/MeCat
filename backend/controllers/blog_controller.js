@@ -11,7 +11,7 @@ const getBlog = async (req, res) => {
     return res.status(404).json({ success: false, message: "Blog not found" });
   }
 
-  const blog = data.rows;
+  const blog = data.rows[0];
 
   return res.status(200).json({ success: true, blog });
 };

@@ -31,7 +31,7 @@ function AllBlogsPage() {
 
   return (
     <Layout>
-      <BlogList listName="All blogs" blogs={blogs} />
+      <BlogList pathName="blogs" listName="All blogs" blogs={blogs} />
     </Layout>
   );
 }
