@@ -3,9 +3,13 @@ import { pool } from "../utils/db.js";
 const getBlog = async (req, res) => {
   const { blogId } = req.params;
 
-  const data = await pool.query("SELECT * FROM blogs WHERE blog_id = $1", [
-    blogId,
-  ]);
+  const data = await pool.query(
+    `SELECT blogs.*, users.username
+     FROM blogs
+     JOIN users ON blogs.user_id = users.user_id
+     WHERE blogs.blog_id = $1`,
+    [blogId]
+  );
 
   if (data.rows.length === 0) {
     return res.status(404).json({ success: false, message: "Blog not found" });

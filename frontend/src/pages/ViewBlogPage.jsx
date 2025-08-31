@@ -48,6 +48,7 @@ function ViewBlogPage() {
           </button>
           {editBlog ? (
             <EditBlog
+              blogId={blog?.blog_id}
               originalTitle={blog?.title}
               originalContent={blog?.content}
             />

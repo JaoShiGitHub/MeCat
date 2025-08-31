@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../contexts/Auth";
 import { useEditForm } from "../contexts/EditForm";
 import axios from "axios";
+import dayjs from "dayjs";
 import BASE_URL from "../config";
 
 function BlogContent({ blog = {} }) {
@@ -10,6 +11,11 @@ function BlogContent({ blog = {} }) {
   const { loggedInUser } = useAuth();
   const navigate = useNavigate();
   const [successMessage, setSuccessMessage] = useState("");
+
+  const author = `Created by: ${blog?.username}`;
+  const date = dayjs(blog?.updated_at).format("DD/MM/YYYY HH:mm");
+  const lastUpdated =
+    blog?.posted_at === blog?.updated_at ? `${date}` : `Edit: ${date}`;
 
   const handleDeleteBlogById = async (blogId) => {
     try {
@@ -42,8 +48,8 @@ function BlogContent({ blog = {} }) {
       {successMessage ? (
         <p>{successMessage}</p>
       ) : (
-        <div>
-          <div className="flex items-center justify-between mb-8 ">
+        <section className="">
+          <div className="flex items-center justify-between mb-2">
             <h1 className="text-[clamp(1.5rem,4vh,3rem)] font-bold ">
               {blog?.title}
             </h1>
@@ -65,8 +71,12 @@ function BlogContent({ blog = {} }) {
               </div>
             )}
           </div>
-          <p className="leading-relaxed tracking-wide ">{blog?.content}</p>
-        </div>
+          <div className="flex gap-x-4">
+            <span>{author}</span> <span>{lastUpdated}</span>
+          </div>
+
+          <p className="leading-relaxed tracking-wide mt-8">{blog?.content}</p>
+        </section>
       )}
     </article>
   );
