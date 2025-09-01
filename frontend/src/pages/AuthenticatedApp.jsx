@@ -3,11 +3,11 @@ import AllBlogsPage from "./AllBlogsPage";
 import MyBlogsPage from "./MyBlogsPage";
 import CreateNewBlogPage from "./CreateNewBlogPage";
 import ViewBlogPage from "./ViewBlogPage";
-import { EditFormProvider } from "../contexts/EditForm";
+import { BlogProvider } from "../contexts/Blog";
 
 function AuthenticatedApp() {
   return (
-    <EditFormProvider>
+    <BlogProvider>
       <Routes>
         <Route path="/blogs" element={<AllBlogsPage />} />
         <Route path="/my-blogs" element={<MyBlogsPage />} />
@@ -17,7 +17,7 @@ function AuthenticatedApp() {
 
         <Route path="*" element={<AllBlogsPage />} />
       </Routes>
-    </EditFormProvider>
+    </BlogProvider>
   );
 }
 

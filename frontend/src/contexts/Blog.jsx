@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 
-const EditFormContext = React.createContext();
+const BlogContext = React.createContext();
 
-function EditFormProvider(props) {
+function BlogProvider(props) {
   const [editBlog, setEditBlog] = useState();
   const [search, setSearch] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const [searchError, setSearchError] = useState("");
 
   return (
-    <EditFormContext.Provider
+    <BlogContext.Provider
       value={{
         editBlog,
         setEditBlog,
@@ -22,10 +22,10 @@ function EditFormProvider(props) {
       }}
     >
       {props.children}
-    </EditFormContext.Provider>
+    </BlogContext.Provider>
   );
 }
 
-const useEditForm = () => React.useContext(EditFormContext);
+const useBlog = () => React.useContext(BlogContext);
 
-export { EditFormProvider, useEditForm };
+export { BlogProvider, useBlog };

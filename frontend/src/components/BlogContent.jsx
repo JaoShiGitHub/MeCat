@@ -1,13 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useAuth } from "../contexts/Auth";
-import { useEditForm } from "../contexts/EditForm";
+import { useBlog } from "../contexts/Blog";
 import axios from "axios";
 import dayjs from "dayjs";
 import BASE_URL from "../config";
 
 function BlogContent({ blog = {} }) {
-  const { setEditBlog } = useEditForm();
+  const { setEditBlog } = useBlog();
   const { loggedInUser } = useAuth();
   const navigate = useNavigate();
   const [successMessage, setSuccessMessage] = useState("");

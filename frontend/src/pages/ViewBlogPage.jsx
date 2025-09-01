@@ -5,12 +5,12 @@ import Layout from "../components/Layout";
 import BlogContent from "../components/BlogContent";
 import BASE_URL from "../config";
 import EditBlog from "../components/EditBlog";
-import { useEditForm } from "../contexts/EditForm";
+import { useBlog } from "../contexts/Blog";
 
 function ViewBlogPage() {
   const [blog, setBlog] = useState({});
   const navigate = useNavigate();
-  const { editBlog } = useEditForm();
+  const { editBlog } = useBlog();
   const { blogId } = useParams();
 
   useEffect(() => {
