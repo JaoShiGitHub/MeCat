@@ -7,7 +7,7 @@ import {
   createBlog,
   editBlog,
   deleteBlog,
-} from "../controllers/blog_controller.js";
+} from "../controllers/blog-controller.js";
 
 const blogRouter = Router();
 

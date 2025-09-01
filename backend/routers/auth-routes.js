@@ -12,7 +12,7 @@ import {
   login,
   logout,
   isLoggedIn,
-} from "../controllers/auth_controller.js";
+} from "../controllers/auth-controller.js";
 
 const authRouter = Router();
 
