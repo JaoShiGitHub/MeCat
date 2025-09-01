@@ -1,6 +1,5 @@
 import axios from "axios";
 import MeCat from "../components/MeCat";
-import { useAuth } from "../contexts/Auth";
 import BASE_URL from "../config";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -9,7 +8,6 @@ import { InputFormUA } from "../components/Inputs";
 
 function RegisterPage() {
   const navigate = useNavigate();
-  const { loading, setLoading } = useAuth();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -20,7 +18,6 @@ function RegisterPage() {
     e.preventDefault();
 
     try {
-      setLoading(true);
       const response = await axios.post(`${BASE_URL}/auth/register`, {
         username,
         email,
@@ -30,7 +27,6 @@ function RegisterPage() {
       if (response?.data?.success) {
         setSuccessMessage("Account has been created!");
       }
-      setLoading(false);
     } catch (error) {
       if (axios.isAxiosError(error)) {
         setErrorMessage(error.response?.data?.message);

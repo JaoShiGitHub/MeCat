@@ -6,12 +6,15 @@ import BlogContent from "../components/BlogContent";
 import BASE_URL from "../config";
 import EditBlog from "../components/EditBlog";
 import { useBlog } from "../contexts/Blog";
+import { useAuth } from "../contexts/Auth";
+import Loading from "../components/Loading";
 
 function ViewBlogPage() {
   const [blog, setBlog] = useState({});
   const navigate = useNavigate();
   const { editBlog } = useBlog();
   const { blogId } = useParams();
+  const { loading, setLoading } = useAuth();
 
   useEffect(() => {
     getBlog();
@@ -19,10 +22,12 @@ function ViewBlogPage() {
 
   const getBlog = async () => {
     try {
+      setLoading(true);
       const response = await axios.get(`${BASE_URL}/blogs/${blogId}`, {
         withCredentials: true,
       });
       setBlog(response?.data?.blog);
+      setLoading(false);
     } catch (error) {
       if (axios.isAxiosError(error)) {
         console.log(error.response?.data?.message);
@@ -44,7 +49,9 @@ function ViewBlogPage() {
             <img className="h-[45%]" src="/images/black-arrow-left.svg" />
             <span>Back</span>
           </button>
-          {editBlog ? (
+          {loading ? (
+            <Loading />
+          ) : editBlog ? (
             <EditBlog
               blogId={blog?.blog_id}
               originalTitle={blog?.title}
