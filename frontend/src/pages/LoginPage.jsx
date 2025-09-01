@@ -9,17 +9,20 @@ function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { login, setLoading } = useAuth();
+  const { login, setLoading, errorMessage } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       setLoading(true);
-      await login({ email, password });
-      navigate("/blogs");
-      setLoading(false);
+      const success = await login({ email, password });
+      if (success) {
+        navigate("/blogs");
+        setLoading(false);
+      }
     } catch (error) {
       console.log(error);
+      console.log(errorMessage);
     }
   };
 
@@ -50,6 +53,9 @@ function LoginPage() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </label>
+        {errorMessage && (
+          <p className="text-red-700 text-center">{errorMessage}</p>
+        )}
         <LongButton type="submit" btnName="Login" />
       </form>
       <p>

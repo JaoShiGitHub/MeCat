@@ -19,10 +19,17 @@ function AuthProvider(props) {
       const response = await axios.post(`${BASE_URL}/auth/login`, data, {
         withCredentials: true,
       });
-      setLoggedInUser(response?.data?.user);
-      setIsAuthenticated(response?.data?.success);
+      if (response?.data?.success) {
+        setLoggedInUser(response?.data?.user);
+        setIsAuthenticated(response?.data?.success);
+      }
     } catch (error) {
-      console.log(error);
+      if (axios.isAxiosError(error)) {
+        setErrorMessage(error.response?.data?.message);
+      } else {
+        setErrorMessage("Login Failed");
+        console.log(error);
+      }
     }
   };
 
@@ -37,7 +44,11 @@ function AuthProvider(props) {
       setLoggedInUser({ id: userData.id, username: userData.username });
       setIsAuthenticated(response?.data?.success);
     } catch (error) {
-      console.log(error);
+      if (axios.isAxiosError(error)) {
+        setErrorMessage(error.response?.data?.message);
+      } else {
+        console.log(error);
+      }
     }
   };
 

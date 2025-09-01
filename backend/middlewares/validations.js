@@ -10,7 +10,12 @@ const validateRegisterInput = (req, res, next) => {
 
   if (!validateEmail(email, res)) return;
 
-  if (username.length < 4 || username.length > 20) {
+  if (
+    !username ||
+    typeof username !== "string" ||
+    username.trim().length < 4 ||
+    username.length > 20
+  ) {
     return res.status(400).json({
       success: false,
       message: "Username must be between 4 and 20 characters",

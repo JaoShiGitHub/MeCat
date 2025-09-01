@@ -44,7 +44,7 @@ function BlogContent({ blog = {} }) {
   }, [successMessage, navigate]);
 
   return (
-    <article className="max-w-[60vw] overflow-y-auto pt-16">
+    <article className="max-w-[60vw] overflow-y-auto py-16">
       {successMessage ? (
         <p>{successMessage}</p>
       ) : (

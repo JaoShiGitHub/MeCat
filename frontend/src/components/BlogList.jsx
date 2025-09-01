@@ -24,11 +24,13 @@ function BlogList({ searchError, pathName, listName, blogs = [] }) {
             return (
               <li
                 key={blog.blog_id}
-                className="group relative text-start w-full h-[20vh] bg-white border-gray-300 rounded-xl border-2 py-10"
+                className="group relative flex items-center text-start w-full h-[20vh] bg-white border-gray-300 rounded-xl border-2 py-10"
               >
                 <Link to={`/${pathName}/${blog.blog_id}/${blogSlug}`}>
                   <h1 className="font-bold text-xl mb-4 px-10">{blog.title}</h1>
-                  <p className="text-base line-clamp-4 px-10">{blog.content}</p>
+                  <p className="text-base line-clamp-3 px-10 ">
+                    {blog.content}
+                  </p>
                   <div className="hidden group-hover:flex bg-gray-300/50 backdrop-blur-sm w-full h-full absolute top-0 items-center justify-center rounded-xl gap-x-10 shadow-lg">
                     <img
                       className="h-[10vh]"

@@ -62,7 +62,7 @@ function MyBlogsPage() {
 
   return (
     <Layout>
-      <div className="flex flex-col gap-y-10 max-w-[60vw]">
+      <div className="flex flex-col w-full gap-y-10 max-w-[60vw]">
         <SearchBar
           search={search}
           setSearch={setSearch}

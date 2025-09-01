@@ -28,7 +28,9 @@ function BlogForm({
         { title, content },
         { withCredentials: true }
       );
-      console.log(response);
+      if (response?.data?.success) {
+        setSuccessMessage("Blog has beep updated!  🎉");
+      }
     } catch (error) {
       if (axios.isAxiosError(error)) {
         console.log(error);

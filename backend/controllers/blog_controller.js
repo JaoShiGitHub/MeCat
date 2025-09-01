@@ -30,6 +30,8 @@ const getBlogs = async (req, res) => {
     params.push(`%${search}%`);
   }
 
+  query += " ORDER BY posted_at DESC";
+
   const data = await pool.query(query, params);
 
   if (data.rows.length === 0) {
@@ -52,6 +54,8 @@ const getMyBlogs = async (req, res) => {
     query += " AND (title ILIKE $2 OR content ILIKE $2)";
     params.push(`%${search}%`);
   }
+
+  query += " ORDER BY posted_at DESC";
 
   const data = await pool.query(query, params);
 
