@@ -48,12 +48,12 @@ A full-stack blog management application where users can create, edit, search, a
 ```
 
 ## ⚡️ Getting Started
-  Clone the repository:
+  #### Clone the repository:
   ```
   git clone https://github.com/JaoShiGitHub/me-cat.git
   cd me-cat
   ```
-  Install dependencies:
+  #### Install dependencies:
   ```
   # Install backend dependencies
   cd backend
@@ -62,11 +62,11 @@ A full-stack blog management application where users can create, edit, search, a
   cd ../frontend
   npm install
   ```
-  Set up environment variables:
+  #### Set up environment variables:
   * Create a .env file in the backend/ directory
-  Set up database:
+  #### Set up database:
   * Database setup screenshots available in `about-me-cat/screenshots/database`
-  Run the application:
+  #### Run the application:
   ```
   # Start the backend server
   cd ../backend
