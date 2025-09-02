@@ -17,7 +17,7 @@ A full-stack blog management application where users can create, edit, search, a
   * Edit own blog
   * Logout
 
-## Project Structure
+## 📂 Project Structure
 ```
 ├── about-me-cat/               # Project designs & database setup screenshots
 |   ├── designs/                # API, UI, and database design
@@ -62,8 +62,22 @@ A full-stack blog management application where users can create, edit, search, a
   cd ../frontend
   npm install
   ```
+  Set up environment variables:
+  * Create a .env file in the backend/ directory
+  Set up database:
+  * Database setup screenshots available in `about-me-cat/screenshots/database`
+  Run the application:
+  ```
+  # Start the backend server
+  cd ../backend
+  npm start
+  # Start the frontend development server
+  cd ../frontend
+  npm start
+  ```
+  
 (Grey = feature not yet included)
 ![API Design](https://github.com/JaoShiGitHub/me-cat/blob/main/about-me-cat/designs/api-design.png?raw=true)
 ![Schema](https://github.com/JaoShiGitHub/me-cat/blob/main/about-me-cat/designs/schema.png?raw=true)
 ![Schema](https://github.com/JaoShiGitHub/me-cat/blob/main/about-me-cat/designs/me-cat.png?raw=true)
-All designs by JaoShiGitHub (Oshin)
+Designed & created by JaoShiGitHub (Oshin)
