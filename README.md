@@ -47,6 +47,8 @@ A full-stack blog management application where users can create, edit, search, a
 │   ├── .gitignore              # Specifies files to be ignored by Git
 │   ├── package.json            # Frontend dependencies
 │   └── tailwind.config.js      # TailwindCSS configuration
+├── .env.example                # Example environment variables
+├── LICENSE                     # License information
 └── README.md                   # The file you are currently reading
 ```
 
@@ -72,7 +74,7 @@ npm install
 
 #### Set up environment variables:
 
-- Create a .env file in the backend/ directory
+- Create a .env file in the backend/ directory based on the .env.example file.
 
 #### Set up database:
 
