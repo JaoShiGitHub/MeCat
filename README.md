@@ -1,23 +1,26 @@
-# 🐈 MeCat ✍️ 
+# 🐈 MeCat ✍️
+
 A full-stack blog management application where users can create, edit, search, and manage their own blogs.
 
-* **Frontend**: React, JavaScript, TailwindCSS
-* **Backend**: Node.js, Express.js, bcrypt, jsonwebtoken
-* **Database**: PostgreSQL
-* **Design Tools**: Figma (UI), Google Sheets (API planning), draw.io (Database schema)
+- **Frontend**: React, JavaScript, TailwindCSS
+- **Backend**: Node.js, Express.js, bcrypt, jsonwebtoken
+- **Database**: PostgreSQL
+- **Design Tools**: Figma (UI), Google Sheets (API planning), draw.io (Database schema)
 
 ## ✨ Features
-  * User registration
-  * User login
-  * View all blogs
-  * View own blogs
-  * Search blogs
-  * View single blog details
-  * Delete own blog
-  * Edit own blog
-  * Logout
+
+- User registration
+- User login
+- User logout
+- View all blogs
+- View own blogs
+- View single blog details
+- Search blogs
+- Edit own blog
+- Delete own blog
 
 ## 📂 Project Structure
+
 ```
 ├── about-me-cat/               # Project designs & database setup screenshots
 |   ├── designs/                # API, UI, and database design
@@ -48,34 +51,44 @@ A full-stack blog management application where users can create, edit, search, a
 ```
 
 ## ⚡️ Getting Started
-  #### Clone the repository:
-  ```
-  git clone https://github.com/JaoShiGitHub/me-cat.git
-  cd me-cat
-  ```
-  #### Install dependencies:
-  ```
-  # Install backend dependencies
-  cd backend
-  npm install
-  # Install frontend dependencies
-  cd ../frontend
-  npm install
-  ```
-  #### Set up environment variables:
-  * Create a .env file in the backend/ directory
-  #### Set up database:
-  * Database setup screenshots available in `about-me-cat/screenshots/database`
-  #### Run the application:
-  ```
-  # Start the backend server
-  cd ../backend
-  npm start
-  # Start the frontend development server
-  cd ../frontend
-  npm start
-  ```
-  
+
+#### Clone the repository:
+
+```
+git clone https://github.com/JaoShiGitHub/me-cat.git
+cd me-cat
+```
+
+#### Install dependencies:
+
+```
+# Install backend dependencies
+cd backend
+npm install
+# Install frontend dependencies
+cd ../frontend
+npm install
+```
+
+#### Set up environment variables:
+
+- Create a .env file in the backend/ directory
+
+#### Set up database:
+
+- Database setup screenshots available in `about-me-cat/screenshots/database`
+
+#### Run the application:
+
+```
+# Start the backend server
+cd ../backend
+npm start
+# Start the frontend development server
+cd ../frontend
+npm start
+```
+
 (Grey = feature not yet included)
 ![API Design](https://github.com/JaoShiGitHub/me-cat/blob/main/about-me-cat/designs/api-design.png?raw=true)
 ![Schema](https://github.com/JaoShiGitHub/me-cat/blob/main/about-me-cat/designs/schema.png?raw=true)
