@@ -1,16 +1,24 @@
 {
-  "name": "backend",
+  "name": "MeCat Backend",
+  "author": "JaoShiGitHub (Oshin)",
+  "description": "Backend service, part of the MeCat project",
+  "keywords": [
+    "backend",
+    "jwt",
+    "api",
+    "node",
+    "express",
+    "postgresql",
+    "authentication"
+  ],
+  "license": "MIT",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "app.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon app.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
     "bcrypt": "^6.0.0",
     "cookie-parser": "^1.4.7",
@@ -19,5 +27,9 @@
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
     "pg": "^8.16.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JaoShiGitHub/me-cat/tree/main/backend"
   }
 }
