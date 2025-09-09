@@ -94,8 +94,26 @@ const createBlog = async (req, res) => {
 };
 
 const editBlog = async (req, res) => {
+  const loggedInUser = req.user.id;
   const { blogId } = req.params;
   const { title, content } = req.body;
+
+  const data = await pool.query("SELECT * FROM blogs WHERE blog_id = $1", [
+    blogId,
+  ]);
+
+  const blog = data.rows[0];
+
+  if (!blog) {
+    return res.status(404).json({ success: false, message: "Blog not found" });
+  }
+
+  if (blog.user_id !== loggedInUser) {
+    return res.status(403).json({
+      success: false,
+      message: "You do not have permission to perform this action",
+    });
+  }
 
   await pool.query(
     "UPDATE blogs SET title = $1, content = $2, updated_at = NOW() WHERE blog_id = $3",
