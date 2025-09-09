@@ -1,7 +1,18 @@
 import { pool } from "../utils/db.js";
+import { createClient } from "redis";
+
+const client = await createClient()
+  .on("error", (err) => console.log("Redis Client Error: ", err))
+  .connect();
 
 const getBlog = async (req, res) => {
   const { blogId } = req.params;
+
+  const cachedBlog = await client.get(blogId);
+
+  if (cachedBlog) {
+    return res.status(200).json(JSON.parse(cachedBlog));
+  }
 
   const data = await pool.query(
     `SELECT blogs.*, users.username
@@ -16,6 +27,8 @@ const getBlog = async (req, res) => {
   }
 
   const blog = data.rows[0];
+
+  await client.setEx(blogId, 3600, JSON.stringify(blog));
 
   return res.status(200).json({ success: true, blog });
 };
@@ -89,6 +102,8 @@ const editBlog = async (req, res) => {
     [title, content, blogId]
   );
 
+  await client.del(blogId);
+
   return res
     .status(200)
     .json({ success: true, message: "Blog updated successfully" });
@@ -104,6 +119,8 @@ const deleteBlog = async (req, res) => {
   if (result.rowCount === 0) {
     return res.status(404).json({ success: false, message: "Blog not found" });
   }
+
+  await client.del(blogId);
 
   return res
     .status(200)
