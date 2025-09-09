@@ -3,7 +3,7 @@
 A full-stack blog management application where users can create, edit, search, and manage their own blogs.
 
 - **Frontend**: React, JavaScript, TailwindCSS
-- **Backend**: Node.js, Express.js, bcrypt, jsonwebtoken
+- **Backend**: Node.js, Express.js, Redis, bcrypt, JSON Web Token
 - **Database**: PostgreSQL
 - **Design Tools**: Figma (UI), Google Sheets (API planning), draw.io (Database schema)
 
