@@ -92,7 +92,7 @@ npm start
 ```
 
 (Grey = feature not yet included)
-![API Design](https://github.com/JaoShiGitHub/me-cat/blob/main/about-me-cat/designs/api-design.png?raw=true)
-![Schema](https://github.com/JaoShiGitHub/me-cat/blob/main/about-me-cat/designs/schema.png?raw=true)
-![Schema](https://github.com/JaoShiGitHub/me-cat/blob/main/about-me-cat/designs/me-cat.png?raw=true)
+![API Design](https://github.com/JaoShiGitHub/MeCat/blob/main/about-me-cat/designs/api-design.png)
+![Schema](https://github.com/JaoShiGitHub/MeCat/blob/main/about-me-cat/designs/schema.png)
+![Schema](https://github.com/JaoShiGitHub/MeCat/blob/main/about-me-cat/designs/me-cat.png)
 Designed & created by JaoShiGitHub (Oshin)
