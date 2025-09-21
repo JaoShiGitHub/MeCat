@@ -9,7 +9,9 @@ import authRouter from "./routers/auth-routes.js";
 import blogRouter from "./routers/blog-routes.js";
 
 const app = express();
-const port = 4000;
+const PORT = 4000;
+const SOCKET_PORT = 5000;
+const server = createServer(app);
 
 dotenv.config();
 
@@ -22,31 +24,26 @@ app.use(
   })
 );
 
-app.use("/auth", authRouter);
-app.use("/blogs", blogRouter);
-
-const httpSever = createServer(app);
-const io = new Server(httpSever, {
+const io = new Server(server, {
   cors: {
     origin: "http://localhost:3000",
     credentials: true,
   },
 });
 
+app.use("/auth", authRouter);
+app.use("/blogs", blogRouter(io));
+
 io.on("connection", (socket) => {
   console.log("A user connected:", socket.id);
-
-  socket.on("newComment", (data) => {
-    io.emit("receiveComment", data);
-  });
 
   socket.on("disconnect", () => {
     console.log("User disconnected:", socket.id);
   });
 });
 
-// Older style (before v3 of socket.io): io.listen(4000);
-// Modern style:
-httpSever.listen(port, () => {
-  console.log(`Sever is running on port ${port}`);
-});
+server.listen(SOCKET_PORT, () =>
+  console.log(`Socket.io is running on port ${SOCKET_PORT}`)
+);
+
+app.listen(PORT, () => console.log(`Sever is running on port ${PORT}`));
