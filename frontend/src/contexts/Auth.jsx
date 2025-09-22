@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import BASE_URL from "../config.js";
-import { io } from "socket.io-client";
 
 const AuthContext = React.createContext();
 
@@ -10,22 +9,10 @@ function AuthProvider(props) {
   const [errorMessage, setErrorMessage] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loggedInUser, setLoggedInUser] = useState(null);
-  const [socket, setSocket] = useState(null);
 
   useEffect(() => {
     isLoggedIn();
   }, []);
-
-  // initial socket
-
-  useEffect(() => {
-    const newSocket = io("http://localhost:4000", { withCredentials: true });
-    setSocket(newSocket);
-
-    return () => {
-      newSocket.disconnect();
-    };
-  }, [loggedInUser]);
 
   const login = async (data) => {
     try {

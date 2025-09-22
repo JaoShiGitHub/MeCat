@@ -31,17 +31,29 @@ function blogRouter(io) {
   router.delete("/:blogId", authUser, deleteBlog);
 
   // COMMENT SYSTEM
-  router.get("/:blogId/comments", authUser);
-  router.get("/:blogId/comments/:commentId/replies", authUser);
+  router.get("/:blogId/comments", authUser, getCommentsByBlogId);
+  router.get(
+    "/:blogId/comments/:commentId/replies",
+    authUser,
+    getRepliesByCommentId
+  );
 
-  router.post("/:blogId/comments", authUser);
-  router.post("/:blogId/comments/:commentId/replies", authUser);
+  router.post("/:blogId/comments", authUser, postComment);
+  router.post("/:blogId/comments/:commentId/replies", authUser, postReply);
 
-  router.patch("/:blogId/comments/:commentId", authUser);
-  router.patch("/:blogId/comments/:commentId/replies/:replyId", authUser);
+  router.patch("/:blogId/comments/:commentId", authUser, editComment);
+  router.patch(
+    "/:blogId/comments/:commentId/replies/:replyId",
+    authUser,
+    editReply
+  );
 
-  router.delete("/:blogId/comments/:commentId", authUser);
-  router.delete("/:blogId/comments/:commentId/replies/:replyId", authUser);
+  router.delete("/:blogId/comments/:commentId", authUser, deleteCommentById);
+  router.delete(
+    "/:blogId/comments/:commentId/replies/:replyId",
+    authUser,
+    deleteReplyById
+  );
   return router;
 }
 
