@@ -39,7 +39,17 @@ const getRepliesByCommentId = async (req, res) => {
 };
 
 // POST
-const postComment = async (req, res) => {};
+const postComment = async (req, res) => {
+  const { blogId, userId, content } = req.body;
+  try {
+    await pool.query(
+      `INSERT INTO comments (blog_id, user_id, content, commented_at, updated_at) VALUES ($1, $2, $3, NOW(), NOW())`,
+      [blogId, userId, content]
+    );
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 const postReply = async (req, res) => {};
 
